@@ -1,0 +1,16 @@
+# dsh-think-chinese bundle patch
+#
+# 双保险：
+#   1) 系统提示词里插一段极短的中文硬约定（每步请求都带，故刻意压到 ~100 字）。
+#   2) agent/pre-step 钩子：每轮第一步把一条 30 字中文锚点追加到消息列表末尾，
+#      并先移除历史里的旧锚点，使任何时刻只存在一条、且永远最靠近生成点。
+# 不改动任何官方插件行，也不注册工具。
+
+- insert:
+    - id: dsh-think-chinese
+      name: 'dsh-think-chinese'
+      config:
+        enabled: true
+        # 10500 = 排在官方 DEPLOYMENT_PERSONA_SUFFIX(10200) 之后，
+        # 即系统提示词的最后一段，最靠近对话，风格类指令最容易被遵守。
+        order: 10500

@@ -1,0 +1,12 @@
+# 调试日志（DSH_THINK_CHINESE_TRACE 开启时才会生成）
+anchor.log
+*.log
+
+# 依赖与系统垃圾
+node_modules/
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/

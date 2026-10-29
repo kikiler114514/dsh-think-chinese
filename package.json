@@ -1,0 +1,42 @@
+{
+  "name": "dsh-think-chinese",
+  "version": "0.1.0",
+  "description": "强制 DeepSeek Harness 的所有对话用简体中文思考与回复：系统提示词硬约定 + 逐轮中文锚点双保险",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "chinese",
+    "reasoning-language",
+    "system-prompt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kikiler114514/dsh-think-chinese.git"
+  },
+  "homepage": "https://github.com/kikiler114514/dsh-think-chinese#readme",
+  "bugs": {
+    "url": "https://github.com/kikiler114514/dsh-think-chinese/issues"
+  },
+  "author": "kikiler114514",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
