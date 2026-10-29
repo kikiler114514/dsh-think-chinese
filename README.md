@@ -33,10 +33,16 @@
 ```powershell
 git clone https://github.com/kikiler114514/dsh-think-chinese.git
 cd dsh-think-chinese
-
 $env:ELECTRON_RUN_AS_NODE="1"
+
+# 情况 A：原装安装（resources\app.asar 还在）
 & "$DSH\resources\runtime\cli\bin\dsh.cmd" plugin --profile desktop add "file:$PWD"
+
+# 情况 B：解包版（resources\app 展开、app.asar 已被改名，dsh.cmd 会找不到 cli.js）
+node "$DSH\resources\app\dsh\node_modules\@deepseek-ai\dsh-desktop-host\lib\cli.js" plugin --profile desktop add "file:$PWD"
 ```
+
+> 注意：`dsh.cmd` 内部写死了 `app.asar\dsh\node_modules\@deepseek-ai\dsh-desktop-host\lib\cli.js` 这个路径。如果你的 `app.asar` 已改名/删除（很多人为了打补丁会这么做），它就直接报错，请走情况 B。
 
 装完重启 DSH（或在插件市场里热挂载）才生效——插件靠 profile `package.json` 的 `dsh.profile.bundles` 加载。
 
@@ -44,7 +50,12 @@ $env:ELECTRON_RUN_AS_NODE="1"
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE="1"
+
+# 原装
 & "$DSH\resources\runtime\cli\bin\dsh.cmd" plugin --profile desktop remove dsh-think-chinese
+
+# 解包版
+node "$DSH\resources\app\dsh\node_modules\@deepseek-ai\dsh-desktop-host\lib\cli.js" plugin --profile desktop remove dsh-think-chinese
 ```
 
 ## 配置
